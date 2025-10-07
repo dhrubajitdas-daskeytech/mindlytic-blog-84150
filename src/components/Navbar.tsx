@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -13,6 +13,7 @@ import {
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const categories = [
     "Technology",
@@ -93,9 +94,6 @@ const Navbar = () => {
 
           {/* Right side actions */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className="hidden md:flex">
-              <Search className="h-5 w-5" />
-            </Button>
             <Button className="hidden md:flex bg-gradient-hero hover:opacity-90 transition-opacity">
               Subscribe
             </Button>

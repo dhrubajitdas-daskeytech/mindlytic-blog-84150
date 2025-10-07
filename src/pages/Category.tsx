@@ -1,9 +1,12 @@
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Clock, TrendingUp } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Clock, TrendingUp, Search, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Sample articles data - in a real app, this would come from a database or API
@@ -253,6 +256,7 @@ const categoryNames: Record<string, string> = {
 
 const Category = () => {
   const { category } = useParams();
+  const [searchQuery, setSearchQuery] = useState("");
   
   // Convert URL slug to category name
   const categoryName = categoryNames[category || ""];
@@ -262,6 +266,18 @@ const Category = () => {
   const categoryArticles = allArticles.filter(
     article => article.category === categoryName
   );
+
+  // Further filter by search query
+  const filteredArticles = searchQuery.trim() === ""
+    ? categoryArticles
+    : categoryArticles.filter(article => 
+        article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        article.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+
+  const handleClearSearch = () => {
+    setSearchQuery("");
+  };
 
   return (
     <div className="min-h-screen">
@@ -277,9 +293,38 @@ const Category = () => {
             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
               {categoryName}
             </h1>
-            <p className="text-muted-foreground text-lg">
+            <p className="text-muted-foreground text-lg mb-8">
               {categoryDescription}
             </p>
+            
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Search articles..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-12 pr-12 h-12 text-base"
+                />
+                {searchQuery && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleClearSearch}
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 w-8"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                )}
+              </div>
+              {searchQuery && (
+                <p className="text-sm text-muted-foreground mt-3">
+                  Found {filteredArticles.length} article{filteredArticles.length !== 1 ? 's' : ''} matching "{searchQuery}"
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </section>
@@ -288,7 +333,7 @@ const Category = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {categoryArticles.map((article, index) => {
+            {filteredArticles.map((article, index) => {
               const content = (
                 <Card 
                   className="group hover:shadow-large transition-all duration-300 overflow-hidden border-border/50 bg-card animate-scale-in cursor-pointer h-full"
@@ -337,8 +382,19 @@ const Category = () => {
             })}
           </div>
 
-          {categoryArticles.length === 0 && (
-            <div className="text-center py-16">
+          {filteredArticles.length === 0 && searchQuery && (
+            <div className="col-span-full text-center py-16">
+              <p className="text-muted-foreground text-lg mb-2">
+                No articles found matching "{searchQuery}"
+              </p>
+              <Button variant="outline" onClick={handleClearSearch} className="mt-4">
+                Clear Search
+              </Button>
+            </div>
+          )}
+
+          {categoryArticles.length === 0 && !searchQuery && (
+            <div className="col-span-full text-center py-16">
               <p className="text-muted-foreground text-lg">
                 No articles found in this category yet.
               </p>
