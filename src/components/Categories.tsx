@@ -1,10 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Cpu, TrendingUp, Globe, Heart, GraduationCap, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const categories = [
   {
     title: "Technology",
+    slug: "technology",
     description: "Latest gadgets, software reviews, and tech trends",
     icon: Cpu,
     color: "from-blue-500 to-cyan-500",
@@ -12,6 +14,7 @@ const categories = [
   },
   {
     title: "Finance & Investing",
+    slug: "finance-investing",
     description: "Smart investment strategies and financial planning",
     icon: TrendingUp,
     color: "from-green-500 to-emerald-500",
@@ -19,6 +22,7 @@ const categories = [
   },
   {
     title: "Web Hosting & Blogging",
+    slug: "web-hosting-blogging",
     description: "Build and grow your online presence",
     icon: Globe,
     color: "from-purple-500 to-pink-500",
@@ -26,6 +30,7 @@ const categories = [
   },
   {
     title: "Health & Fitness",
+    slug: "health-fitness",
     description: "Wellness tips, nutrition, and workout guides",
     icon: Heart,
     color: "from-red-500 to-orange-500",
@@ -33,6 +38,7 @@ const categories = [
   },
   {
     title: "E-Learning",
+    slug: "e-learning",
     description: "Online courses, skills development, and education",
     icon: GraduationCap,
     color: "from-indigo-500 to-blue-500",
@@ -77,14 +83,16 @@ const Categories = () => {
                   <span className="text-sm text-muted-foreground">
                     {category.articles} Articles
                   </span>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    className="group-hover:text-primary group-hover:translate-x-1 transition-all"
-                  >
-                    Explore
-                    <ArrowRight className="ml-1 h-4 w-4" />
-                  </Button>
+                  <Link to={`/category/${category.slug}`}>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="group-hover:text-primary group-hover:translate-x-1 transition-all"
+                    >
+                      Explore
+                      <ArrowRight className="ml-1 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
