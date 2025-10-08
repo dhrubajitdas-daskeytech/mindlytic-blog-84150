@@ -58,25 +58,6 @@ const FeaturedArticles = () => {
               </div>
             </Card>
           </div>
-
-          <Card className="bg-gradient-card p-6 rounded-xl border border-border">
-            <h4 className="font-bold text-foreground mb-2">Editor's Picks</h4>
-            <p className="text-sm text-muted-foreground mb-4">
-              Our team handpicks tools that we trust and use. These picks change monthly — check back often for deals and fresh recommendations.
-            </p>
-            <div className="flex gap-3">
-              <a href="#recommend">
-                <Button className="bg-gradient-to-r from-primary to-[#ffb86b] text-primary-foreground hover:opacity-90">
-                  Our Picks
-                </Button>
-              </a>
-              <a href="#courses">
-                <Button variant="outline" className="border-border/20 hover:bg-card/50">
-                  Enroll
-                </Button>
-              </a>
-            </div>
-          </Card>
         </div>
 
         <aside className="space-y-4">
@@ -95,42 +76,6 @@ const FeaturedArticles = () => {
                 )
               )}
             </div>
-          </Card>
-
-          <Card id="subscribe" className="bg-gradient-card p-4 rounded-xl border border-border">
-            <h4 className="font-bold text-foreground mb-2">Subscribe to Mindlytic</h4>
-            <p className="text-sm text-muted-foreground mb-3">
-              Weekly insights — reviews, comparisons and course discounts. No spam.
-            </p>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                alert("Thank you! Add your integration here.");
-              }}
-              className="flex gap-2"
-            >
-              <input
-                type="email"
-                placeholder="you@domain.com"
-                required
-                className="flex-1 px-3 py-2 rounded-lg border border-border bg-transparent text-foreground placeholder:text-muted-foreground outline-none focus:border-primary text-sm"
-              />
-              <Button type="submit" className="bg-gradient-to-r from-primary to-[#ffb86b] text-primary-foreground hover:opacity-90">
-                Subscribe
-              </Button>
-            </form>
-          </Card>
-
-          <Card className="bg-card p-4 rounded-xl border border-border">
-            <h4 className="font-bold text-foreground mb-2">Popular Courses</h4>
-            <p className="text-sm text-muted-foreground mb-3">
-              SEO for affiliates • Blogging to revenue • Practical finance
-            </p>
-            <ul className="text-sm text-muted-foreground space-y-2 pl-4 list-disc">
-              <li>SEO for Affiliate Bloggers</li>
-              <li>Start Blogging (step-by-step)</li>
-              <li>Personal Finance for Beginners</li>
-            </ul>
           </Card>
         </aside>
       </div>
