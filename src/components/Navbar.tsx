@@ -1,158 +1,56 @@
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+import { Search } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const location = useLocation();
-
   const categories = [
-    "Technology",
-    "Finance & Investing",
-    "Web Hosting & Blogging",
-    "Health & Fitness",
-    "E-Learning"
+    { name: "Tech", slug: "technology" },
+    { name: "Finance", slug: "finance-investing" },
+    { name: "Web Hosting", slug: "web-hosting-blogging" },
+    { name: "Health & Fitness", slug: "health-fitness" },
+    { name: "E-Learning", slug: "e-learning" }
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link to="/">
-              <h1 className="text-2xl font-display font-bold bg-gradient-hero bg-clip-text text-transparent cursor-pointer">
-                Affiliate Insights
-              </h1>
+    <header className="container mx-auto px-4 py-6">
+      <div className="flex items-center justify-between gap-4 flex-wrap">
+        <Link to="/" className="flex items-center gap-3 group">
+          <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-[#ff9a9e] flex items-center justify-center shadow-large">
+            <span className="text-2xl font-extrabold text-primary-foreground">M</span>
+          </div>
+          <div>
+            <h1 className="text-lg font-bold text-foreground tracking-wide">Mindlytic</h1>
+            <p className="text-xs text-muted-foreground">Learn Smarter, Choose Better</p>
+          </div>
+        </Link>
+
+        <nav className="hidden md:flex items-center gap-2">
+          {categories.map((category) => (
+            <Link key={category.slug} to={`/category/${category.slug}`}>
+              <Button variant="ghost" className="text-sm text-muted-foreground hover:text-foreground">
+                {category.name}
+              </Button>
             </Link>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <div className="hidden sm:flex items-center gap-2 bg-card/30 px-3 py-2 rounded-lg border border-border">
+            <Search className="h-4 w-4 text-muted-foreground" />
+            <input
+              type="search"
+              placeholder="Search articles, tools..."
+              className="bg-transparent border-none outline-none text-sm text-foreground placeholder:text-muted-foreground w-44"
+            />
           </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center">
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <Link to="/">
-                    <Button variant="ghost" className="text-sm font-medium">
-                      Home
-                    </Button>
-                  </Link>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm font-medium">
-                    Categories
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
-                      {categories.map((category) => {
-                        const categorySlug = category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
-                        return (
-                          <li key={category}>
-                            <NavigationMenuLink asChild>
-                              <Link
-                                to={`/category/${categorySlug}`}
-                                className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                              >
-                                <div className="text-sm font-medium leading-none">{category}</div>
-                              </Link>
-                            </NavigationMenuLink>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <a href="#about">
-                    <Button variant="ghost" className="text-sm font-medium">
-                      About Us
-                    </Button>
-                  </a>
-                </NavigationMenuItem>
-
-                <NavigationMenuItem>
-                  <a href="#contact">
-                    <Button variant="ghost" className="text-sm font-medium">
-                      Contact Us
-                    </Button>
-                  </a>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
-
-          {/* Right side actions */}
-          <div className="flex items-center space-x-4">
-            <Button className="hidden md:flex bg-gradient-hero hover:opacity-90 transition-opacity">
+          <a href="#subscribe">
+            <Button className="bg-gradient-to-r from-primary to-[#ffb86b] text-primary-foreground hover:opacity-90 shadow-lg">
               Subscribe
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="lg:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
-          </div>
+          </a>
         </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="lg:hidden py-4 space-y-2 animate-fade-in">
-            <Link to="/" className="block">
-              <Button variant="ghost" className="w-full justify-start text-sm font-medium">
-                Home
-              </Button>
-            </Link>
-            
-            <div className="border-t border-border pt-2 mt-2">
-              <p className="px-4 py-2 text-xs font-semibold text-muted-foreground">Categories</p>
-              {categories.map((category) => {
-                const categorySlug = category.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
-                return (
-                  <Link key={category} to={`/category/${categorySlug}`} className="block">
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start text-sm font-medium pl-8"
-                    >
-                      {category}
-                    </Button>
-                  </Link>
-                );
-              })}
-            </div>
-
-            <a href="#about" className="block">
-              <Button variant="ghost" className="w-full justify-start text-sm font-medium">
-                About Us
-              </Button>
-            </a>
-
-            <a href="#contact" className="block">
-              <Button variant="ghost" className="w-full justify-start text-sm font-medium">
-                Contact Us
-              </Button>
-            </a>
-
-            <Button className="w-full bg-gradient-hero hover:opacity-90 transition-opacity mt-4">
-              Subscribe
-            </Button>
-          </div>
-        )}
       </div>
-    </nav>
+    </header>
   );
 };
 
