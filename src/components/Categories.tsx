@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const categoryData = {
   tech: {
@@ -32,6 +33,24 @@ const categoryData = {
         author: "Mindlytic",
         readTime: "10 min read",
         date: "Feb 2025"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1400&auto=format&fit=crop",
+        kicker: "AI Tools",
+        title: "AI Writing Tools Every Content Creator Needs",
+        excerpt: "Discover the best AI assistants to enhance your writing workflow and creativity.",
+        author: "Mindlytic",
+        readTime: "7 min read",
+        date: "May 2025"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1484788984921-03950022c9ef?q=80&w=1400&auto=format&fit=crop",
+        kicker: "Tech",
+        title: "Best Cloud Storage Solutions for 2025",
+        excerpt: "Compare features, pricing, and security across top cloud storage providers.",
+        author: "D. Das",
+        readTime: "9 min read",
+        date: "Jun 2025"
       }
     ]
   },
@@ -65,6 +84,24 @@ const categoryData = {
         author: "Mindlytic",
         readTime: "9 min read",
         date: "Nov 2024"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=1400&auto=format&fit=crop",
+        kicker: "Crypto",
+        title: "Cryptocurrency for Beginners: Where to Start",
+        excerpt: "Learn the basics of crypto investing, wallets, and how to stay safe.",
+        author: "D. Das",
+        readTime: "11 min read",
+        date: "Apr 2025"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?q=80&w=1400&auto=format&fit=crop",
+        kicker: "Investing",
+        title: "Top Investment Apps for Young Professionals",
+        excerpt: "Compare features, fees, and ease of use for modern investment platforms.",
+        author: "Mindlytic",
+        readTime: "8 min read",
+        date: "Jun 2025"
       }
     ]
   },
@@ -98,6 +135,24 @@ const categoryData = {
         author: "Mindlytic",
         readTime: "15 min read",
         date: "Dec 2024"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1400&auto=format&fit=crop",
+        kicker: "SEO",
+        title: "SEO Essentials for New Bloggers in 2025",
+        excerpt: "Master on-page SEO, keyword research, and technical optimization basics.",
+        author: "D. Das",
+        readTime: "14 min read",
+        date: "May 2025"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1432888622747-4eb9a8f2c293?q=80&w=1400&auto=format&fit=crop",
+        kicker: "Monetization",
+        title: "How to Make Money Blogging: A Realistic Guide",
+        excerpt: "Proven monetization strategies from ads to affiliate marketing and courses.",
+        author: "Mindlytic",
+        readTime: "16 min read",
+        date: "Jun 2025"
       }
     ]
   },
@@ -131,6 +186,24 @@ const categoryData = {
         author: "Mindlytic",
         readTime: "10 min read",
         date: "Jan 2025"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1400&auto=format&fit=crop",
+        kicker: "Workout",
+        title: "30-Day Home Workout Plan (No Equipment)",
+        excerpt: "Build strength and endurance with bodyweight exercises anyone can do.",
+        author: "Mindlytic",
+        readTime: "12 min read",
+        date: "Apr 2025"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1400&auto=format&fit=crop",
+        kicker: "Nutrition",
+        title: "Meal Prep Guide for Busy Professionals",
+        excerpt: "Save time and eat healthier with these simple meal prep strategies.",
+        author: "D. Das",
+        readTime: "10 min read",
+        date: "Jun 2025"
       }
     ]
   },
@@ -164,6 +237,24 @@ const categoryData = {
         author: "Mindlytic",
         readTime: "9 min read",
         date: "Dec 2024"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop",
+        kicker: "Learning",
+        title: "Best Online Platforms to Learn Programming",
+        excerpt: "Compare course quality, pricing, and certification value across top platforms.",
+        author: "D. Das",
+        readTime: "13 min read",
+        date: "May 2025"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1400&auto=format&fit=crop",
+        kicker: "Career",
+        title: "How to Build a Portfolio That Gets You Hired",
+        excerpt: "Practical tips for creating a standout portfolio in any field.",
+        author: "Mindlytic",
+        readTime: "15 min read",
+        date: "Jun 2025"
       }
     ]
   }
@@ -178,32 +269,43 @@ const CategorySection = ({ data, id }: { data: any; id: string }) => (
       </Link>
     </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {data.articles.map((article: any, index: number) => (
-        <Card
-          key={index}
-          className="bg-card p-4 rounded-xl overflow-hidden border border-border hover:shadow-large transition-all duration-300 hover:-translate-y-1.5 group"
-        >
-          <img
-            src={article.image}
-            alt={article.title}
-            className="w-full h-36 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-500"
-          />
-          <div className="inline-block bg-card/30 px-2 py-1 rounded-full text-accent font-semibold text-xs mb-2">
-            {article.kicker}
-          </div>
-          <h4 className="font-bold text-foreground mb-2 text-base">{article.title}</h4>
-          <p className="text-sm text-muted-foreground mb-3">{article.excerpt}</p>
-          <div className="flex justify-between items-center text-xs text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-secondary to-card"></div>
-              <span>By {article.author}</span>
-            </div>
-            <span>{article.date}</span>
-          </div>
-        </Card>
-      ))}
-    </div>
+    <Carousel
+      opts={{
+        align: "start",
+        loop: true,
+      }}
+      className="w-full"
+    >
+      <CarouselContent className="-ml-4">
+        {data.articles.map((article: any, index: number) => (
+          <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+            <Card
+              className="bg-card p-4 rounded-xl overflow-hidden border border-border hover:shadow-large transition-all duration-300 hover:-translate-y-1.5 group h-full"
+            >
+              <img
+                src={article.image}
+                alt={article.title}
+                className="w-full h-36 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="inline-block bg-card/30 px-2 py-1 rounded-full text-accent font-semibold text-xs mb-2">
+                {article.kicker}
+              </div>
+              <h4 className="font-bold text-foreground mb-2 text-base">{article.title}</h4>
+              <p className="text-sm text-muted-foreground mb-3">{article.excerpt}</p>
+              <div className="flex justify-between items-center text-xs text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-secondary to-card"></div>
+                  <span>By {article.author}</span>
+                </div>
+                <span>{article.date}</span>
+              </div>
+            </Card>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious className="-left-12 bg-card border-border hover:bg-accent/10" />
+      <CarouselNext className="-right-12 bg-card border-border hover:bg-accent/10" />
+    </Carousel>
   </section>
 );
 

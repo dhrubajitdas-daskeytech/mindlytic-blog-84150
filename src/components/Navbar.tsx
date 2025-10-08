@@ -1,12 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [showCategories, setShowCategories] = useState(false);
+  
   const categories = [
-    { name: "Tech", slug: "technology" },
-    { name: "Finance", slug: "finance-investing" },
-    { name: "Web Hosting", slug: "web-hosting-blogging" },
+    { name: "Technology", slug: "technology" },
+    { name: "Finance & Investing", slug: "finance-investing" },
+    { name: "Web Hosting & Blogging", slug: "web-hosting-blogging" },
     { name: "Health & Fitness", slug: "health-fitness" },
     { name: "E-Learning", slug: "e-learning" }
   ];
@@ -24,31 +27,56 @@ const Navbar = () => {
           </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-2">
-          {categories.map((category) => (
-            <Link key={category.slug} to={`/category/${category.slug}`}>
-              <Button variant="ghost" className="text-sm text-muted-foreground hover:text-foreground">
-                {category.name}
-              </Button>
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <div className="hidden sm:flex items-center gap-2 bg-card/30 px-3 py-2 rounded-lg border border-border">
-            <Search className="h-4 w-4 text-muted-foreground" />
-            <input
-              type="search"
-              placeholder="Search articles, tools..."
-              className="bg-transparent border-none outline-none text-sm text-foreground placeholder:text-muted-foreground w-44"
-            />
+        <nav className="hidden md:flex items-center gap-1">
+          <Link to="/">
+            <Button variant="ghost" className="text-sm text-muted-foreground hover:text-foreground">
+              Home
+            </Button>
+          </Link>
+          
+          <div 
+            className="relative"
+            onMouseEnter={() => setShowCategories(true)}
+            onMouseLeave={() => setShowCategories(false)}
+          >
+            <Button variant="ghost" className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1">
+              Categories
+              <ChevronDown className="h-3 w-3" />
+            </Button>
+            
+            {showCategories && (
+              <div className="absolute top-full left-0 mt-1 bg-card border border-border rounded-lg shadow-large py-2 min-w-[220px] z-50">
+                {categories.map((category) => (
+                  <Link 
+                    key={category.slug} 
+                    to={`/category/${category.slug}`}
+                    className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent/10 transition-colors"
+                  >
+                    {category.name}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
+
+          <Link to="/about">
+            <Button variant="ghost" className="text-sm text-muted-foreground hover:text-foreground">
+              About Us
+            </Button>
+          </Link>
+
+          <Link to="/contact">
+            <Button variant="ghost" className="text-sm text-muted-foreground hover:text-foreground">
+              Contact Us
+            </Button>
+          </Link>
+
           <a href="#subscribe">
-            <Button className="bg-gradient-to-r from-primary to-[#ffb86b] text-primary-foreground hover:opacity-90 shadow-lg">
+            <Button className="bg-gradient-to-r from-primary to-[#ffb86b] text-primary-foreground hover:opacity-90 shadow-lg ml-2">
               Subscribe
             </Button>
           </a>
-        </div>
+        </nav>
       </div>
     </header>
   );
