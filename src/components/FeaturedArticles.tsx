@@ -109,13 +109,13 @@ const FeaturedArticles = () => {
         <aside>
           <Card className="bg-card p-4 rounded-xl border border-border h-full">
             <h4 className="font-bold text-foreground mb-3 text-sm">Popular Tags</h4>
-            <div className="flex flex-col gap-1.5">
-              {["hosting", "reviews", "chrome extensions", "budgeting", "home workouts", "courses", "WordPress", "productivity", "investing", "protein", "SEO", "affiliate", "finance", "wellness", "coding", "design", "marketing", "tutorials"].map(
+            <div className="flex flex-col gap-2">
+              {["hosting", "reviews", "chrome extensions", "budgeting", "home workouts", "courses", "WordPress", "productivity", "investing", "protein"].map(
                 (tag) => (
                   <a
                     key={tag}
                     href="#"
-                    className="inline-block px-3 py-1.5 rounded-lg bg-gradient-to-r from-card/50 to-card/30 border border-border/30 text-muted-foreground hover:text-foreground hover:border-accent/30 hover:shadow-md text-xs transition-all text-center"
+                    className="inline-block px-3 py-1.5 rounded-lg bg-card/30 text-muted-foreground hover:text-foreground text-xs transition-colors text-center"
                   >
                     {tag}
                   </a>
