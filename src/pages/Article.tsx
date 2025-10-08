@@ -1,58 +1,13 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AdBanner from "@/components/ads/AdBanner";
-import SidebarAd from "@/components/ads/SidebarAd";
-import InContentAd from "@/components/ads/InContentAd";
-import AffiliateProductBox from "@/components/ads/AffiliateProductBox";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Calendar, User, Share2, Bookmark } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Article = () => {
-  const aiTools = [
-    {
-      name: "ChatGPT Plus",
-      description: "The most powerful AI writing assistant for content creators",
-      price: "$20/mo",
-      rating: 5,
-      features: [
-        "Advanced GPT-4 access",
-        "Priority responses during peak times",
-        "Access to newest features first"
-      ]
-    },
-    {
-      name: "Jasper AI",
-      description: "AI copywriting tool specifically designed for marketers",
-      price: "$39/mo",
-      rating: 5,
-      features: [
-        "50+ content templates",
-        "SEO optimization tools",
-        "Brand voice customization"
-      ]
-    },
-    {
-      name: "Midjourney",
-      description: "Create stunning AI-generated images for your content",
-      price: "$10/mo",
-      rating: 5,
-      features: [
-        "High-quality image generation",
-        "Commercial usage rights",
-        "Fast generation times"
-      ]
-    }
-  ];
-
   return (
     <div className="min-h-screen">
       <Navbar />
-      
-      {/* Top Banner Ad */}
-      <div className="container mx-auto px-4 py-6 flex justify-center">
-        <AdBanner size="large-leaderboard" />
-      </div>
 
       {/* Article Header */}
       <article className="container mx-auto px-4 py-8">
@@ -138,8 +93,6 @@ const Article = () => {
                 </li>
               </ul>
 
-              <InContentAd />
-
               <h2 className="text-3xl font-display font-bold text-foreground mt-12 mb-6">
                 1. ChatGPT Plus - The Ultimate Writing Assistant
               </h2>
@@ -147,15 +100,6 @@ const Article = () => {
               <p className="text-foreground leading-relaxed mb-6">
                 OpenAI's ChatGPT Plus has become the go-to AI writing tool for millions of content creators worldwide. With access to GPT-4, it offers unparalleled natural language processing capabilities that can help you with everything from brainstorming ideas to writing complete articles.
               </p>
-
-              <AffiliateProductBox 
-                name={aiTools[0].name}
-                description={aiTools[0].description}
-                price={aiTools[0].price}
-                rating={aiTools[0].rating}
-                features={aiTools[0].features}
-                ctaText="Start Free Trial"
-              />
 
               <p className="text-foreground leading-relaxed mb-6">
                 What sets ChatGPT Plus apart is its versatility. You can use it for content ideation, outline creation, draft writing, editing, and even repurposing content for different platforms. The conversational interface makes it incredibly intuitive to use, even for those new to AI tools.
@@ -169,17 +113,6 @@ const Article = () => {
                 Jasper AI (formerly Jarvis) is specifically designed for marketers and content creators who need high-converting copy. With over 50 templates and a deep understanding of marketing frameworks, Jasper can create everything from blog posts to ad copy.
               </p>
 
-              <AffiliateProductBox 
-                name={aiTools[1].name}
-                description={aiTools[1].description}
-                price={aiTools[1].price}
-                rating={aiTools[1].rating}
-                features={aiTools[1].features}
-                ctaText="Get Started Free"
-              />
-
-              <InContentAd />
-
               <h2 className="text-3xl font-display font-bold text-foreground mt-12 mb-6">
                 3. Midjourney - AI Image Generation at Its Finest
               </h2>
@@ -187,15 +120,6 @@ const Article = () => {
               <p className="text-foreground leading-relaxed mb-6">
                 Visual content is crucial for engagement, and Midjourney has revolutionized how creators generate images. This AI tool creates stunning, professional-quality images from simple text descriptions, making it perfect for blog headers, social media posts, and marketing materials.
               </p>
-
-              <AffiliateProductBox 
-                name={aiTools[2].name}
-                description={aiTools[2].description}
-                price={aiTools[2].price}
-                rating={aiTools[2].rating}
-                features={aiTools[2].features}
-                ctaText="Join Midjourney"
-              />
 
               <h2 className="text-3xl font-display font-bold text-foreground mt-12 mb-6">
                 4. Descript - AI-Powered Video & Podcast Editing
@@ -212,8 +136,6 @@ const Article = () => {
               <p className="text-foreground leading-relaxed mb-6">
                 Copy.ai excels at creating short-form content like social media posts, product descriptions, and email subject lines. Its user-friendly interface and specialized templates make it perfect for creators who need to produce large volumes of content quickly.
               </p>
-
-              <InContentAd />
 
               <h2 className="text-3xl font-display font-bold text-foreground mt-12 mb-6">
                 The Future of AI-Powered Content Creation
@@ -247,9 +169,6 @@ const Article = () => {
               </p>
             </div>
 
-            {/* Bottom Ad */}
-            <InContentAd />
-
             {/* Author Bio */}
             <div className="mt-12 p-6 bg-secondary/30 rounded-lg border border-border">
               <div className="flex items-start gap-4">
@@ -270,8 +189,6 @@ const Article = () => {
           {/* Sidebar */}
           <aside className="lg:col-span-4">
             <div className="space-y-6">
-              <SidebarAd size="medium-rectangle" />
-              
               {/* Popular Articles */}
               <div className="bg-card border border-border rounded-lg p-6">
                 <h3 className="font-bold text-foreground mb-4">Popular Articles</h3>
@@ -289,8 +206,6 @@ const Article = () => {
                   ))}
                 </div>
               </div>
-
-              <SidebarAd size="medium-rectangle" sticky={false} />
             </div>
           </aside>
         </div>
