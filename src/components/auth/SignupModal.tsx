@@ -59,7 +59,7 @@ export const SignupModal = ({ open, onOpenChange, defaultRole = 'user' }: Signup
       if (authData.user) {
         // Insert the role
         const { error: roleError } = await supabase
-          .from('user_roles')
+          .from('mindlytic_user_roles')
           .insert({
             user_id: authData.user.id,
             role: validatedData.role
