@@ -2,9 +2,17 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { SignupModal } from "@/components/auth/SignupModal";
 
 const Navbar = () => {
   const [showCategories, setShowCategories] = useState(false);
+  const [signupModalOpen, setSignupModalOpen] = useState(false);
+  const [selectedRole, setSelectedRole] = useState<'user' | 'partner' | 'admin'>('user');
+
+  const handleSignupClick = (role: 'user' | 'partner' | 'admin') => {
+    setSelectedRole(role);
+    setSignupModalOpen(true);
+  };
   
   const categories = [
     { name: "Technology", slug: "technology" },
@@ -71,13 +79,36 @@ const Navbar = () => {
             </Button>
           </Link>
 
-          <a href="#subscribe">
-            <Button className="bg-gradient-to-r from-primary to-[#ffb86b] text-primary-foreground hover:opacity-90 shadow-lg ml-2">
-              Subscribe
-            </Button>
-          </a>
+          <Button 
+            variant="ghost" 
+            onClick={() => handleSignupClick('user')}
+            className="text-sm text-muted-foreground hover:text-foreground"
+          >
+            User
+          </Button>
+          
+          <Button 
+            variant="ghost" 
+            onClick={() => handleSignupClick('partner')}
+            className="text-sm text-muted-foreground hover:text-foreground"
+          >
+            Partner
+          </Button>
+          
+          <Button 
+            onClick={() => handleSignupClick('admin')}
+            className="bg-gradient-to-r from-primary to-[#ffb86b] text-primary-foreground hover:opacity-90 shadow-lg"
+          >
+            Admin
+          </Button>
         </nav>
       </div>
+
+      <SignupModal 
+        open={signupModalOpen} 
+        onOpenChange={setSignupModalOpen}
+        defaultRole={selectedRole}
+      />
     </header>
   );
 };
