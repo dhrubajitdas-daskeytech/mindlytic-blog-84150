@@ -279,27 +279,29 @@ const CategorySection = ({ data, id }: { data: any; id: string }) => (
       <CarouselContent className="-ml-4">
         {data.articles.map((article: any, index: number) => (
           <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-            <Card
-              className="bg-card p-4 rounded-xl overflow-hidden border border-border hover:shadow-large transition-all duration-300 hover:-translate-y-1.5 group h-full"
-            >
-              <img
-                src={article.image}
-                alt={article.title}
-                className="w-full h-36 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="inline-block bg-card/30 px-2 py-1 rounded-full text-accent font-semibold text-xs mb-2">
-                {article.kicker}
-              </div>
-              <h4 className="font-bold text-foreground mb-2 text-base">{article.title}</h4>
-              <p className="text-sm text-muted-foreground mb-3">{article.excerpt}</p>
-              <div className="flex justify-between items-center text-xs text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-secondary to-card"></div>
-                  <span>By {article.author}</span>
+            <a href="/article/ai-tools-content-creators" className="block h-full">
+              <Card
+                className="bg-card p-4 rounded-xl overflow-hidden border border-border hover:shadow-large transition-all duration-300 hover:-translate-y-1.5 group h-full cursor-pointer"
+              >
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  className="w-full h-36 object-cover rounded-lg mb-3 group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="inline-block bg-card/30 px-2 py-1 rounded-full text-accent font-semibold text-xs mb-2">
+                  {article.kicker}
                 </div>
-                <span>{article.date}</span>
-              </div>
-            </Card>
+                <h4 className="font-bold text-foreground mb-2 text-base">{article.title}</h4>
+                <p className="text-sm text-muted-foreground mb-3">{article.excerpt}</p>
+                <div className="flex justify-between items-center text-xs text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-secondary to-card"></div>
+                    <span>By {article.author}</span>
+                  </div>
+                  <span>{article.date}</span>
+                </div>
+              </Card>
+            </a>
           </CarouselItem>
         ))}
       </CarouselContent>

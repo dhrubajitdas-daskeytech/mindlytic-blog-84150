@@ -87,21 +87,23 @@ const FeaturedArticles = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
             {articles.map((article, index) => (
-              <Card key={index} className="bg-card p-3 rounded-lg border border-border hover:shadow-large transition-all group">
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  className="w-full h-24 object-cover rounded-md mb-2 group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="inline-block bg-card/30 px-2 py-0.5 rounded-full text-accent font-semibold text-[10px] mb-1">
-                  {article.kicker}
-                </div>
-                <h4 className="font-bold text-foreground mb-1 text-xs line-clamp-2">{article.title}</h4>
-                <div className="flex justify-between items-center text-[10px] text-muted-foreground">
-                  <span className="truncate">{article.author}</span>
-                  <span>{article.date}</span>
-                </div>
-              </Card>
+              <a key={index} href="/article/ai-tools-content-creators" className="block">
+                <Card className="bg-card p-3 rounded-lg border border-border hover:shadow-large transition-all group cursor-pointer">
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-24 object-cover rounded-md mb-2 group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="inline-block bg-card/30 px-2 py-0.5 rounded-full text-accent font-semibold text-[10px] mb-1">
+                    {article.kicker}
+                  </div>
+                  <h4 className="font-bold text-foreground mb-1 text-xs line-clamp-2">{article.title}</h4>
+                  <div className="flex justify-between items-center text-[10px] text-muted-foreground">
+                    <span className="truncate">{article.author}</span>
+                    <span>{article.date}</span>
+                  </div>
+                </Card>
+              </a>
             ))}
           </div>
         </div>
